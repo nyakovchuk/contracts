@@ -1,4 +1,4 @@
-PROTO_ROOT := .
+PROJECT_ROOT := $(abspath .)
 PROTO_DIRS := account pagination
 
 .PHONY: gen clean
@@ -23,8 +23,8 @@ gen:
 			echo "  Generating $$dir/$$file"; \
 			protoc \
 				-I . \
-				-I $(PROTO_ROOT) \
-				-I ../googleapis \
+				-I $(PROJECT_ROOT) \
+				-I $(PROJECT_ROOT)/googleapis \
 				--go_out=go \
 				--go_opt=paths=source_relative \
 				--go-grpc_out=go \
