@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package pagination;
+option go_package = "github.com/nyakovchuk/contracts/pagination/go;pagination";
+
+message Pagination {
+    uint32 page = 1;
+    uint32 per_page = 2;
+}
