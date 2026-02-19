@@ -15,6 +15,15 @@ message CreateUser {
     uint32 age = 7;
 }
 
+message UpdateUser {
+    string phone = 1;
+    string first_name = 2;
+    string last_name = 3;
+    string middle_name = 4;
+    string email = 5;
+    uint32 age = 6;
+}
+
 message User {
     uint64 id = 1;
     string login = 2;
