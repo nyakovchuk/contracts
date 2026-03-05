@@ -4,6 +4,7 @@ package auth;
 option go_package="github.com/nyakovchuk/contracts/auth/go;auth";
 
 import "google/protobuf/empty.proto";
+import "auth_model.proto";
 
 service Auth {
     rpc Register(RegisterRequest) returns (google.protobuf.Empty);
@@ -24,8 +25,16 @@ message LoginRequest {
     string password = 2;
 }
 
+message LoginResponse {
+    TokenPair token_pair = 1;
+}
+
 message RefreshRequest {
     string refresh_token = 1;
+}
+
+message RefreshResponse {
+    TokenPair token_pair= 1;
 }
 
 message ValidateRequest {
@@ -34,9 +43,4 @@ message ValidateRequest {
 
 message ValidateResponse {
     uint64 user_id = 1;
-}
-
-message TokenPair {
-    string access_token = 1;
-    string refresh_token = 2;
 }
