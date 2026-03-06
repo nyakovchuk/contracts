@@ -469,11 +469,11 @@ const file_auth_service_proto_rawDesc = "" +
 	"\x0fValidateRequest\x12!\n" +
 	"\faccess_token\x18\x01 \x01(\tR\vaccessToken\"+\n" +
 	"\x10ValidateResponse\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\x04R\x06userId2\xd4\x02\n" +
+	"\auser_id\x18\x01 \x01(\x04R\x06userId2\xde\x02\n" +
 	"\x04Auth\x129\n" +
-	"\bRegister\x12\x15.auth.RegisterRequest\x1a\x16.google.protobuf.Empty\x12,\n" +
-	"\x05Login\x12\x12.auth.LoginRequest\x1a\x0f.auth.TokenPair\x125\n" +
-	"\fRefreshToken\x12\x14.auth.RefreshRequest\x1a\x0f.auth.TokenPair\x129\n" +
+	"\bRegister\x12\x15.auth.RegisterRequest\x1a\x16.google.protobuf.Empty\x120\n" +
+	"\x05Login\x12\x12.auth.LoginRequest\x1a\x13.auth.LoginResponse\x12;\n" +
+	"\fRefreshToken\x12\x14.auth.RefreshRequest\x1a\x15.auth.RefreshResponse\x129\n" +
 	"\bValidate\x12\x15.auth.ValidateRequest\x1a\x16.auth.ValidateResponse\x126\n" +
 	"\x06Logout\x12\x14.auth.RefreshRequest\x1a\x16.google.protobuf.Empty\x129\n" +
 	"\n" +
@@ -515,8 +515,8 @@ var file_auth_service_proto_depIdxs = []int32{
 	5,  // 6: auth.Auth.Logout:input_type -> auth.RefreshRequest
 	1,  // 7: auth.Auth.DeleteUser:input_type -> auth.DeleteRequest
 	10, // 8: auth.Auth.Register:output_type -> google.protobuf.Empty
-	9,  // 9: auth.Auth.Login:output_type -> auth.TokenPair
-	9,  // 10: auth.Auth.RefreshToken:output_type -> auth.TokenPair
+	3,  // 9: auth.Auth.Login:output_type -> auth.LoginResponse
+	6,  // 10: auth.Auth.RefreshToken:output_type -> auth.RefreshResponse
 	8,  // 11: auth.Auth.Validate:output_type -> auth.ValidateResponse
 	10, // 12: auth.Auth.Logout:output_type -> google.protobuf.Empty
 	10, // 13: auth.Auth.DeleteUser:output_type -> google.protobuf.Empty
