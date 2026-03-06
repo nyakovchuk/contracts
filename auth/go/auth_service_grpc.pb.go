@@ -36,7 +36,7 @@ type AuthClient interface {
 	Login(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*LoginResponse, error)
 	RefreshToken(ctx context.Context, in *RefreshRequest, opts ...grpc.CallOption) (*RefreshResponse, error)
 	Validate(ctx context.Context, in *ValidateRequest, opts ...grpc.CallOption) (*ValidateResponse, error)
-	Logout(ctx context.Context, in *RefreshRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	Logout(ctx context.Context, in *LogoutRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	DeleteUser(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
@@ -88,7 +88,7 @@ func (c *authClient) Validate(ctx context.Context, in *ValidateRequest, opts ...
 	return out, nil
 }
 
-func (c *authClient) Logout(ctx context.Context, in *RefreshRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *authClient) Logout(ctx context.Context, in *LogoutRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, Auth_Logout_FullMethodName, in, out, cOpts...)
@@ -116,7 +116,7 @@ type AuthServer interface {
 	Login(context.Context, *LoginRequest) (*LoginResponse, error)
 	RefreshToken(context.Context, *RefreshRequest) (*RefreshResponse, error)
 	Validate(context.Context, *ValidateRequest) (*ValidateResponse, error)
-	Logout(context.Context, *RefreshRequest) (*emptypb.Empty, error)
+	Logout(context.Context, *LogoutRequest) (*emptypb.Empty, error)
 	DeleteUser(context.Context, *DeleteRequest) (*emptypb.Empty, error)
 	mustEmbedUnimplementedAuthServer()
 }
@@ -140,7 +140,7 @@ func (UnimplementedAuthServer) RefreshToken(context.Context, *RefreshRequest) (*
 func (UnimplementedAuthServer) Validate(context.Context, *ValidateRequest) (*ValidateResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method Validate not implemented")
 }
-func (UnimplementedAuthServer) Logout(context.Context, *RefreshRequest) (*emptypb.Empty, error) {
+func (UnimplementedAuthServer) Logout(context.Context, *LogoutRequest) (*emptypb.Empty, error) {
 	return nil, status.Error(codes.Unimplemented, "method Logout not implemented")
 }
 func (UnimplementedAuthServer) DeleteUser(context.Context, *DeleteRequest) (*emptypb.Empty, error) {
@@ -240,7 +240,7 @@ func _Auth_Validate_Handler(srv interface{}, ctx context.Context, dec func(inter
 }
 
 func _Auth_Logout_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RefreshRequest)
+	in := new(LogoutRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -252,7 +252,7 @@ func _Auth_Logout_Handler(srv interface{}, ctx context.Context, dec func(interfa
 		FullMethod: Auth_Logout_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServer).Logout(ctx, req.(*RefreshRequest))
+		return srv.(AuthServer).Logout(ctx, req.(*LogoutRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
