@@ -31,6 +31,7 @@ type CreateUser struct {
 	MiddleName    string                 `protobuf:"bytes,5,opt,name=middle_name,json=middleName,proto3" json:"middle_name,omitempty"`
 	Email         string                 `protobuf:"bytes,6,opt,name=email,proto3" json:"email,omitempty"`
 	Age           uint32                 `protobuf:"varint,7,opt,name=age,proto3" json:"age,omitempty"`
+	Balance       float32                `protobuf:"fixed32,8,opt,name=balance,proto3" json:"balance,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -110,6 +111,13 @@ func (x *CreateUser) GetEmail() string {
 func (x *CreateUser) GetAge() uint32 {
 	if x != nil {
 		return x.Age
+	}
+	return 0
+}
+
+func (x *CreateUser) GetBalance() float32 {
+	if x != nil {
+		return x.Balance
 	}
 	return 0
 }
@@ -210,6 +218,7 @@ type User struct {
 	Age           uint32                 `protobuf:"varint,8,opt,name=age,proto3" json:"age,omitempty"`
 	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,9,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,10,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	Balance       float32                `protobuf:"fixed32,11,opt,name=balance,proto3" json:"balance,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -314,11 +323,18 @@ func (x *User) GetUpdatedAt() *timestamppb.Timestamp {
 	return nil
 }
 
+func (x *User) GetBalance() float32 {
+	if x != nil {
+		return x.Balance
+	}
+	return 0
+}
+
 var File_account_model_proto protoreflect.FileDescriptor
 
 const file_account_model_proto_rawDesc = "" +
 	"\n" +
-	"\x13account_model.proto\x12\aaccount\x1a\x1fgoogle/protobuf/timestamp.proto\"\xbd\x01\n" +
+	"\x13account_model.proto\x12\aaccount\x1a\x1fgoogle/protobuf/timestamp.proto\"\xd7\x01\n" +
 	"\n" +
 	"CreateUser\x12\x14\n" +
 	"\x05login\x18\x01 \x01(\tR\x05login\x12\x14\n" +
@@ -329,7 +345,8 @@ const file_account_model_proto_rawDesc = "" +
 	"\vmiddle_name\x18\x05 \x01(\tR\n" +
 	"middleName\x12\x14\n" +
 	"\x05email\x18\x06 \x01(\tR\x05email\x12\x10\n" +
-	"\x03age\x18\a \x01(\rR\x03age\"\xa7\x01\n" +
+	"\x03age\x18\a \x01(\rR\x03age\x12\x18\n" +
+	"\abalance\x18\b \x01(\x02R\abalance\"\xa7\x01\n" +
 	"\n" +
 	"UpdateUser\x12\x14\n" +
 	"\x05phone\x18\x01 \x01(\tR\x05phone\x12\x1d\n" +
@@ -339,7 +356,7 @@ const file_account_model_proto_rawDesc = "" +
 	"\vmiddle_name\x18\x04 \x01(\tR\n" +
 	"middleName\x12\x14\n" +
 	"\x05email\x18\x05 \x01(\tR\x05email\x12\x10\n" +
-	"\x03age\x18\x06 \x01(\rR\x03age\"\xbd\x02\n" +
+	"\x03age\x18\x06 \x01(\rR\x03age\"\xd7\x02\n" +
 	"\x04User\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x04R\x02id\x12\x14\n" +
 	"\x05login\x18\x02 \x01(\tR\x05login\x12\x14\n" +
@@ -355,7 +372,8 @@ const file_account_model_proto_rawDesc = "" +
 	"created_at\x18\t \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
 	"\n" +
 	"updated_at\x18\n" +
-	" \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAtB4Z2github.com/nyakovchuk/contracts/account/go;accountb\x06proto3"
+	" \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x12\x18\n" +
+	"\abalance\x18\v \x01(\x02R\abalanceB4Z2github.com/nyakovchuk/contracts/account/go;accountb\x06proto3"
 
 var (
 	file_account_model_proto_rawDescOnce sync.Once
