@@ -165,7 +165,7 @@ message GetUsersResponse {
 
 message UpdateUserRequest {
     uint64 user_id = 1;
-    account.UpdateUser user = 2;
+    account.User user = 2;
 }
 
 message UpdateCurrentUserRequest {
