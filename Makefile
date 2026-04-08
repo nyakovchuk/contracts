@@ -1,5 +1,5 @@
 PROJECT_ROOT := $(abspath .)
-PROTO_DIRS := account pagination auth gateway
+PROTO_DIRS := account pagination auth gateway transaction
 
 .PHONY: gen clean
 
